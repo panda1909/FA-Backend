@@ -25,3 +25,11 @@ class Manifesto(TimeStamp):
 class FeaturedClients(TimeStamp):
     name = models.CharField(max_length=512)
     logo = models.FileField(upload_to='featured_clients/')
+
+
+class ContactUs(TimeStamp):
+    name = models.CharField(max_length=1024)
+    company = models.CharField(max_length=1024)
+    email = models.EmailField()
+    subject = models.CharField(max_length=1024)
+    message = models.TextField()
