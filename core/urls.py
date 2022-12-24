@@ -1,12 +1,18 @@
 from django.urls import path
-from .views import Links, MenuItems, Manifesto, FeaturedClients, ContactUs
+from .views import LinksAPI, MenuItemsAPI, ManifestoAPI, FeaturedClientsAPI, ContactUsAPI
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'core'
 
 urlpatterns = [
-    path('', Links.as_view(), name='links'),
-    path('menu-items', MenuItems.as_view(), name='menu-items'),
-    path('manifesto', Manifesto.as_view(), name='manifesto'),
-    path('featured-clients', FeaturedClients.as_view(), name='featured-clients'),
-    path('contact-us', ContactUs.as_view(), name='contact-us'),
-]
+    path('', LinksAPI.as_view(), name='links'),
+    path('menu-items', MenuItemsAPI.as_view(), name='menu-items'),
+    path('manifesto', ManifestoAPI.as_view(), name='manifesto'),
+    path('featured-clients', FeaturedClientsAPI.as_view(), name='featured-clients'),
+    path('contact-us', ContactUsAPI.as_view(), name='contact-us'),
+] 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
