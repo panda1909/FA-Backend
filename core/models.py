@@ -14,6 +14,8 @@ class Links(TimeStamp):
     link = models.URLField(max_length=1024)
     name = models.CharField(max_length=256)
 
+    blank = models.BooleanField(default=False)
+
     class Meta:
         verbose_name = 'Link'
         verbose_name_plural = 'Link'
@@ -22,6 +24,8 @@ class Links(TimeStamp):
 class MenuItems(TimeStamp):
     link = models.URLField(max_length=1024)
     image = models.FileField(upload_to='nav_items/')
+
+    blank = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'Menu Item'
@@ -63,6 +67,8 @@ class PopUp(TimeStamp):
     image = models.FileField(upload_to='pop_up/')
     from_date = models.DateField(default=timezone.now)
     to_date = models.DateField(default=timezone.now)
+
+    blank = models.BooleanField(default=False)
 
     class Meta:
         verbose_name = 'PopUp'

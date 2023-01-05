@@ -11,19 +11,19 @@ class LinksSerializer(serializers.ModelSerializer):
 class MenuItemsSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItems
-        fields = ['link', 'image']
+        fields = ('link', 'image', 'blank')
 
 
 class ManifestoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Manifesto
-        fields = ['video', 'content']
+        fields = ('video', 'content')
 
 
 class FeaturedClientsSerializer(serializers.ModelSerializer):
     class Meta:
         model = FeaturedClients
-        fields = ['name', 'logo']
+        fields = ('name', 'logo')
 
 
 class ContactUsSerializer(serializers.ModelSerializer):
@@ -35,4 +35,4 @@ class ContactUsSerializer(serializers.ModelSerializer):
 class PopUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = PopUp
-        fields = ('link', 'image')
+        fields = ('link', 'image', 'blank')
