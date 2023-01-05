@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import LinksAPI, MenuItemsAPI, ManifestoAPI, FeaturedClientsAPI, ContactUsAPI
+from .views import LinksAPI, MenuItemsAPI, ManifestoAPI, FeaturedClientsAPI, ContactUsAPI, PopUpAPI
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -12,6 +12,7 @@ urlpatterns = [
     path('manifesto', ManifestoAPI.as_view(), name='manifesto'),
     path('featured-clients', FeaturedClientsAPI.as_view(), name='featured-clients'),
     path('contact-us', ContactUsAPI.as_view(), name='contact-us'),
+    path('pop-up', PopUpAPI.as_view(), name='pop-up'),
 ] 
 
 if settings.DEBUG:

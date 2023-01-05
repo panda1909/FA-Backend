@@ -1,3 +1,6 @@
+import datetime
+from django.utils import timezone
+
 from django.db import models
 
 
@@ -11,20 +14,36 @@ class Links(TimeStamp):
     link = models.URLField(max_length=1024)
     name = models.CharField(max_length=256)
 
+    class Meta:
+        verbose_name = 'Link'
+        verbose_name_plural = 'Link'
+
 
 class MenuItems(TimeStamp):
     link = models.URLField(max_length=1024)
     image = models.FileField(upload_to='nav_items/')
+
+    class Meta:
+        verbose_name = 'Menu Item'
+        verbose_name_plural = 'Menu Items'
 
 
 class Manifesto(TimeStamp):
     video = models.FileField(upload_to='manifesto/')
     content = models.TextField()
 
+    class Meta:
+        verbose_name = 'Manifesto'
+        verbose_name_plural = 'Manifesto'
+
 
 class FeaturedClients(TimeStamp):
     name = models.CharField(max_length=512)
     logo = models.FileField(upload_to='featured_clients/')
+
+    class Meta:
+        verbose_name = 'Featured Client'
+        verbose_name_plural = 'Featured Clients'
 
 
 class ContactUs(TimeStamp):
@@ -33,3 +52,18 @@ class ContactUs(TimeStamp):
     email = models.EmailField()
     subject = models.CharField(max_length=1024)
     message = models.TextField()
+
+    class Meta:
+        verbose_name = 'Inquiry'
+        verbose_name_plural = 'Inquiries'
+
+
+class PopUp(TimeStamp):
+    link = models.URLField(max_length=1024)
+    image = models.FileField(upload_to='pop_up/')
+    from_date = models.DateField(default=timezone.now)
+    to_date = models.DateField(default=timezone.now)
+
+    class Meta:
+        verbose_name = 'PopUp'
+        verbose_name_plural = 'PopUps'
