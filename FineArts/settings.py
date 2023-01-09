@@ -16,6 +16,7 @@ from pathlib import Path
 import django_on_heroku
 import dotenv
 import dj_database_url
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -33,7 +34,10 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ['DEBUG']
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.environ['ALLOWED_HOSTS'].replace(' ', '').replace('[', '').replace(']', '').replace('"', '').split(',')
+
+
 
 # Application definition
 
@@ -44,7 +48,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # CUSTOM APP
     'core.apps.CoreConfig',
+    # 3RD PARTY PACKAGES
     'rest_framework',
     'corsheaders',
 
@@ -52,23 +58,21 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    # HEROKU CONFIG REQ
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # CORS CONFIG
     'corsheaders.middleware.CorsMiddleware',
 
 ]
 
-# CORS_ALLOWED_ORIGINS = os.environ['CORS_ALLOWED_ORIGINS']
-
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173"
-]
+CORS_ALLOWED_ORIGINS = os.environ['CORS_ALLOWED_ORIGINS'].replace(' ', '').replace('[', '').replace(']', '').replace('"', '').split(',')
 
 ROOT_URLCONF = 'FineArts.urls'
 
@@ -147,6 +151,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, '')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+#HEROKU CONFIG
 django_on_heroku.settings(locals())
 options = DATABASES['default'].get('OPTIONS', {})
 options.pop('sslmode', None)

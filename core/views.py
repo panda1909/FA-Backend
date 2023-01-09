@@ -60,7 +60,7 @@ class ContactUsAPI(APIView):
 
 class PopUpAPI(APIView):
 
-    def get(self):
+    def get(self, request):
         today = datetime.today()
         if PopUp.objects.filter(from_date__lte=today.date(), to_date__gte=today.date()).exists():
             pop_up = PopUp.objects.filter(from_date__lte=today.date(), to_date__gte=today.date()).first()
@@ -68,6 +68,7 @@ class PopUpAPI(APIView):
             pop_up = PopUp.objects.latest('id')
 
         serializer = PopUpSerializer(pop_up)
+        print('----------------',serializer.data)
         return Response(serializer.data)
 
 
