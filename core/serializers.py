@@ -11,7 +11,7 @@ class LinksSerializer(serializers.ModelSerializer):
 class MenuItemsSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItems
-        fields = ('link', 'image', 'blank')
+        fields = ('link', 'image')
 
 
 class ManifestoSerializer(serializers.ModelSerializer):
@@ -35,4 +35,4 @@ class ContactUsSerializer(serializers.ModelSerializer):
 class PopUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = PopUp
-        fields = ('link', 'image', 'blank')
+        fields = ('link', 'image')
